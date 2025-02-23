@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1026215303857",
+    "project_id": "licenta-bf2db",
+    "storage_bucket": "licenta-bf2db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026215303857:android:4ff887df7b3a68f545e090",
+        "android_client_info": {
+          "package_name": "com.example.licenta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR-9pEvghz4T-h0MNIN3MEslrYCzgkSmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
