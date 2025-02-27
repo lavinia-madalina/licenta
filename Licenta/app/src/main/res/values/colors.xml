@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="dividerColor">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorLaborator">#FF5733</color> <!-- Roșu pentru laborator -->
     <color name="colorSeminar">#33FF57</color>   <!-- Verde pentru seminar -->
     <color name="colorCurs">#3357FF</color>      <!-- Albastru pentru curs -->
+    <color name="movtask">#C197D2</color>      <!-- Mov pentru background la task -->
+
 </resources>

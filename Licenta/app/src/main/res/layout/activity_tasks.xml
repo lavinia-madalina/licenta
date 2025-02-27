@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Task Name -->
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextTaskName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nume Task"
+        android:inputType="text"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp"/>
+
+    <!-- Task Description -->
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextTaskDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Descriere Task"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextTaskName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp"/>
+
+    <!-- Task Room -->
+
+    <!-- Date Picker -->
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextTaskRoom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:hint="Sala"
+        android:inputType="textMultiLine"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTaskName" />
+
+    <!-- Select Date Button -->
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:padding="16dp"
+        android:text="Date"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTaskDescription" />
+
+    <Button
+        android:id="@+id/buttonSelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="12dp"/>
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/buttonSubmitTask"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add Task"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonSelectDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

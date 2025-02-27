@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:background="@android:color/white"
+    android:backgroundTint="@color/movtask">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Titlul task-ului cu font mare și bold -->
+        <TextView
+            android:id="@+id/textViewTaskTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Task Name"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Descrierea task-ului (Text subțire, cu font mai mic) -->
+        <TextView
+            android:id="@+id/textViewTaskDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Task Description"
+            android:textSize="14dp"
+            android:textColor="#555555"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Linie de separare între descriere și data task-ului -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Data task-ului, cu un font mic și culoare subtilă -->
+        <TextView
+            android:id="@+id/textViewTaskDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Task Date"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:layout_gravity="end" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

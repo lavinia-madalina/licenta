@@ -1,8 +1,10 @@
 package com.example.licenta;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -79,8 +81,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "Acasă", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_tasks) {
             Toast.makeText(this, "Task-uri", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, TaskView.class);
+            startActivity(intent);
         } else if (id == R.id.nav_calendar) {
             Toast.makeText(this, "Calendar", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_notes) {
             Toast.makeText(this, "Note", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_logout) {
@@ -136,22 +142,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Crearea unui rând pentru fiecare materie
         TableRow tableRow = new TableRow(this);
 
+        // Parametrii pentru fiecare TextView
+        TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+
         // Adăugăm un TextView pentru numele materiei
         TextView subjectNameTextView = new TextView(this);
         subjectNameTextView.setText(name);
         subjectNameTextView.setPadding(16, 8, 16, 8);
+        subjectNameTextView.setLayoutParams(params);  // Apply LayoutParams for equal width
         tableRow.addView(subjectNameTextView);
 
         // Adăugăm un TextView pentru ora de început și de sfârșit
         TextView timeTextView = new TextView(this);
         timeTextView.setText(startTime + " - " + endTime);
         timeTextView.setPadding(16, 8, 16, 8);
+        timeTextView.setLayoutParams(params);  // Apply LayoutParams for equal width
         tableRow.addView(timeTextView);
 
         // Adăugăm un TextView pentru sală
         TextView roomTextView = new TextView(this);
         roomTextView.setText(room);
         roomTextView.setPadding(16, 8, 16, 8);
+        roomTextView.setLayoutParams(params);  // Apply LayoutParams for equal width
         tableRow.addView(roomTextView);
 
         // Colorarea rândului în funcție de tipul materiei
@@ -173,7 +185,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Adăugăm rândul în tabel
         tableLayout.addView(tableRow);
         Log.d("Firestore", "Document data: " + type + ", " + endTime + ", " + startTime + ", " + name + ", " + room);
+        View divider = new View(this);
+        divider.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 2)); // Divider height = 2px
+        divider.setBackgroundColor(getResources().getColor(R.color.dividerColor));
+        tableLayout.addView(divider);
+
     }
+
 
     @Override
     protected void onStart() {
