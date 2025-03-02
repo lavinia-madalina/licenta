@@ -5,16 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder> {
 
-    private List<CalendarSlot> calendarSlots;
+    private List<CalendarSlot> calendarList;
 
-    public CalendarAdapter(List<CalendarSlot> calendarSlots) {
-        this.calendarSlots = calendarSlots;
+    public CalendarAdapter(List<CalendarSlot> calendarList) {
+        this.calendarList = calendarList;
     }
 
     @Override
@@ -25,28 +25,29 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
 
     @Override
     public void onBindViewHolder(CalendarViewHolder holder, int position) {
-        CalendarSlot slot = calendarSlots.get(position);
-        holder.dayTextView.setText(slot.getDay());
-        holder.hourTextView.setText(slot.getHour());
-        holder.subjectTextView.setText(slot.getSubject() != null ? slot.getSubject() : "Nicio materie");
+        CalendarSlot slot = calendarList.get(position);
+
+        // Make sure the views are not null
+        if (holder.textViewDay != null && holder.textViewHour != null) {
+            holder.textViewDay.setText(slot.getDay());
+            holder.textViewHour.setText(slot.getHour());
+        }
     }
 
     @Override
     public int getItemCount() {
-        return calendarSlots.size();
+        return calendarList.size();
     }
 
     public static class CalendarViewHolder extends RecyclerView.ViewHolder {
 
-        TextView dayTextView;
-        TextView hourTextView;
-        TextView subjectTextView;
+        TextView textViewDay;
+        TextView textViewHour;
 
         public CalendarViewHolder(View itemView) {
             super(itemView);
-            dayTextView = itemView.findViewById(R.id.dayTextView);
-            hourTextView = itemView.findViewById(R.id.hourTextView);
-            subjectTextView = itemView.findViewById(R.id.subjectTextView);
+            textViewDay = itemView.findViewById(R.id.textViewDay);  // Ensure these are correct IDs
+            textViewHour = itemView.findViewById(R.id.textViewTime);  // Ensure these are correct IDs
         }
     }
 }

@@ -1,17 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Titluri pentru zilele săptămânii -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDays"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recyclerViewHours"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_day" />
+
+    <!-- Orele din stânga -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHours"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewDays"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_hour_row" />
+
+    <!-- Calendarul principal -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCalendar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="7"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewDays"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recyclerViewHours"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:listitem="@layout/calendar_slot_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

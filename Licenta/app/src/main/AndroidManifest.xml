@@ -35,6 +35,19 @@
             <!-- Add any configurations or attributes here -->
         </activity>
 
+        <activity android:name=".NotesActivity">
+            <!-- Add any configurations or attributes here -->
+        </activity>
+        <activity android:name=".ModifyNotesActivity">
+            <!-- Add any configurations or attributes here -->
+        </activity>
+        <activity android:name=".AddSubjectActivity">
+            <!-- Add any configurations or attributes here -->
+        </activity>
+        <activity android:name=".SubjectDetailsActivity">
+            <!-- Add any configurations or attributes here -->
+        </activity>
+
     </application>
 
 </manifest>

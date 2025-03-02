@@ -20,8 +20,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -89,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         } else if (id == R.id.nav_notes) {
             Toast.makeText(this, "Note", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this,NotesActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
         }
@@ -109,31 +115,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Funcție pentru a obține materiile din Firestore pentru ziua curentă
     private void getSubjectsForToday(String currentDay) {
         db.collection("subjects")
-                .whereEqualTo("day", currentDay)  // Căutăm doar materiile pentru ziua curentă
+                .whereEqualTo("day", currentDay)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         QuerySnapshot documents = task.getResult();
                         if (documents != null && !documents.isEmpty()) {
+                            List<Map<String, String>> subjects = new ArrayList<>();
                             for (QueryDocumentSnapshot document : documents) {
-                                String name = document.getString("name");
-                                String startTime = document.getString("startTime");
-                                String endTime = document.getString("endTime");
-                                String room = document.getString("room");
-                                String type = document.getString("type");
+                                Map<String, String> subject = new HashMap<>();
+                                subject.put("name", document.getString("name"));
+                                subject.put("startTime", document.getString("startTime"));
+                                subject.put("endTime", document.getString("endTime"));
+                                subject.put("room", document.getString("room"));
+                                subject.put("type", document.getString("type"));
 
-                                // Populăm tabelul cu datele
-                                addSubjectToTable(name, startTime, endTime, room, type);
+                                subjects.add(subject);
                             }
-                        } else {
-                            Log.d("Firestore", "Nu au fost găsite materii pentru astăzi.");
+
+                            // Sortăm subiectele după startTime
+                            subjects.sort((s1, s2) -> {
+                                try {
+                                    SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                                    return format.parse(s1.get("startTime")).compareTo(format.parse(s2.get("startTime")));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    return 0;
+                                }
+                            });
+
+                            // Adăugăm subiectele ordonate în tabel
+                            for (Map<String, String> subject : subjects) {
+                                addSubjectToTable(subject.get("name"), subject.get("startTime"), subject.get("endTime"), subject.get("room"), subject.get("type"));
+                            }
                         }
                     } else {
-                        // Dacă există o eroare la obținerea documentelor
                         Toast.makeText(MainActivity.this, "Eroare la încărcarea materiilor", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
 
     // Funcție pentru a adăuga materiile în tabelul din UI
     private void addSubjectToTable(String name, String startTime, String endTime, String room, String type) {

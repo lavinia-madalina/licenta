@@ -1,39 +1,27 @@
 package com.example.licenta;
-
 public class CalendarSlot {
+    private String day;
+    private String hour;
+    private String subjectName;
+    private String room;
 
-    private String day; // Ziua săptămânii (ex. "luni", "marți", etc.)
-    private String hour; // Ora (ex. "08:00", "09:00", etc.)
-    private String subject; // Materia asociată (sau null dacă nu este nicio materie)
-
-    public CalendarSlot(String day, String hour, String subject) {
+    public CalendarSlot(String day, String hour, String subjectName, String room) {
         this.day = day;
         this.hour = hour;
-        this.subject = subject;
+        this.subjectName = subjectName;
+        this.room = room;
     }
 
-    // Getteri și setteri
-    public String getDay() {
-        return day;
+    public String getDay() { return day; }
+    public String getHour() { return hour; }
+    public String getSubjectName() { return subjectName; }
+    public String getRoom() { return room; }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public String getHour() {
-        return hour;
-    }
-
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setRoom(String room) {
+        this.room = room;
     }
 }
